@@ -17,10 +17,14 @@ end
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
-Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+Then /I should notice "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  fail "Unimplemented"
+  content = page.body
+  ind1 = content.index(e1)
+  ind2 = content.index(e2)
+  expect(ind1).to be < ind2
+  
 end
 
 # Make it easier to express checking or unchecking several boxes at once
