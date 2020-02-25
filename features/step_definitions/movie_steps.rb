@@ -31,10 +31,74 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  fail "Unimplemented"
+  ratings = rating_list.split(',')
+  ratings.each do |rating|
+    if uncheck == "un"
+      id = "ratings_#{rating}"
+      id = id.gsub(/\s+/, "")
+      uncheck(id)
+    else
+      id = "ratings_#{rating}"
+      id = id.gsub(/\s+/, "")
+      check(id)
+    end
+  end
+  puts rating_list
+  
 end
 
-Then /I should see all the movies/ do
+When /^(?:|I )press (.*)/ do |button|
+  click_button(button)
+end
+
+Then /^(?:|I )should see (.*)/ do |ratings|
+  # query titles with such ratings from database and then check
+  ratings = ratings.split(',')
+  @movies = Movie.where(rating: ratings)
+  @movies.each do |movie|
+	#content = "hello world"
+	#target = "world"
+	#assert content.include?target, "right"
+	if page.respond_to? :should
+	  page.should have_content(movie.title)
+	else
+	  assert page.have_content(movie.title)
+	end
+  end
+end
+
+
+Then /^(?:|I )should not see (.*)/ do |ratings|
+  
+  ratings = ratings.split(',')
+  @movies = Movie.where(rating: ratings)
+  @movies.each do |movie|
+	if page.respond_to? :should
+	  page.should have_no_content(movie.title)
+	else
+	  assert page.have_no_content(movie.title)
+	end
+  end
+end
+
+When /^(?:|I )check all ratings/ do
+	ratings = Movie.select(:rating).distinct.map(&:rating)
+	ratings.each do |rating|
+	    
+	    id = "ratings_#{rating}"
+	    id = id.gsub(/\s+/, "")
+	    check(id)
+	    
+	end
+	click_button("ratings_submit")
+end
+
+Then /I must see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  fail "Unimplemented"
+	#puts page.body
+	#puts page.body.scan("<tr>").length
+	table_rows = page.body.scan("<tr>").length - 1
+	film_num = Movie.count
+	expect(table_rows).to eq film_num
+
 end
