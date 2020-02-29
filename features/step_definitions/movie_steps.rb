@@ -4,7 +4,7 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-    
+    #puts movie
     Movie.create!(movie)
   end
   #fail "Unimplemented"
@@ -60,9 +60,9 @@ Then /^(?:|I )should see (.*)/ do |ratings|
   ratings = ratings.split(',')
   @movies = Movie.where(rating: ratings)
   @movies.each do |movie|
-	#content = "hello world"
-	#target = "world"
-	#assert content.include?target, "right"
+	c = "hello world"
+	t = "world"
+	expect c.include?t
 	if page.respond_to? :should
 	  page.should have_content(movie.title)
 	else
