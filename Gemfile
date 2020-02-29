@@ -36,6 +36,7 @@ gem 'uglifier', '>= 2.7.1'
 gem 'jquery-rails'
 gem 'haml'
 gem 'protected_attributes'
+gem 'mysql2', '<0.5'
 
 # Use unicorn as the web server
 # gem 'unicorn'
