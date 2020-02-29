@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20111119180638) do
 
   create_table "movies", force: :cascade do |t|
-    t.string   "title"
-    t.string   "rating"
-    t.text     "description"
+    t.string   "title",        limit: 255
+    t.string   "rating",       limit: 255
+    t.text     "description",  limit: 65535
     t.datetime "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
