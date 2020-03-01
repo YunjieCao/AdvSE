@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 20111119180638) do
     t.datetime "expected_delivery_end"
   end
 
+  create_table "task_applications", id: false, force: :cascade do |t|
+    t.integer "order_id", limit: 4, null: false
+    t.integer "user_id",  limit: 4, null: false
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.string  "name",       limit: 20, null: false
     t.string  "email",      limit: 45

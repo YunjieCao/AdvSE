@@ -3,7 +3,7 @@ Rottenpotatoes::Application.routes.draw do
   resources :movies
   # map '/' to be a redirect to '/movies'
   root :to => redirect('/user_profiles')
-  resources :users
   resources :user_profiles
+  resources :order_generation
   post 'users/register'
 end

@@ -1,0 +1,18 @@
+-# in app/views/user_profiles/show.html.haml
+
+%h3 Details about #{@user_profile.name}
+
+%ul#details
+  %li
+    name:
+    = @user_profile.name
+  %li
+    email:
+    = @user_profile.email
+%h4 Description:
+
+%p#description= @user_profile.occupation
+
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+= button_to 'Delete', user_profile_path(@user_profile), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+= link_to 'Back to user_profile list', user_profiles_path
