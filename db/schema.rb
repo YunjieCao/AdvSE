@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200301031258) do
+ActiveRecord::Schema.define(version: 20200301040343) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string "line1",        limit: 45
-    t.string "line2",        limit: 45
-    t.string "city",         limit: 45
-    t.string "state",        limit: 45
-    t.string "country",      limit: 45
-    t.string "postal_code",  limit: 45
-    t.string "phone_number", limit: 45
-    t.string "user_id",      limit: 45
+    t.string  "line1",        limit: 45
+    t.string  "line2",        limit: 45
+    t.string  "city",         limit: 45
+    t.string  "state",        limit: 45
+    t.string  "country",      limit: 45
+    t.string  "postal_code",  limit: 45
+    t.string  "phone_number", limit: 45
+    t.integer "user_id",      limit: 4
   end
 
   create_table "movies", force: :cascade do |t|
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20200301031258) do
     t.integer  "status",                  limit: 4
     t.integer  "source_addr_id",          limit: 4
     t.integer  "dest_addr_id",            limit: 4
-    t.datetime "create_time_stampmp"
+    t.datetime "create_timestamp"
     t.datetime "expected_delivery_start"
     t.datetime "expected_delivery_end"
   end
@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(version: 20200301031258) do
   end
 
   create_table "user_verifications", force: :cascade do |t|
-    t.integer "user_id",    limit: 4,  null: false
+    t.integer "user_id",    limit: 4, null: false
     t.integer "status",     limit: 4
     t.date    "start_date"
-    t.string  "end_date",   limit: 45
+    t.date    "end_date"
   end
 
 end
