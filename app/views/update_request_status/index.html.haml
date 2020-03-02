@@ -1,0 +1,26 @@
+-#  This file is app/views/user_profiles/index.html.haml
+%h2 Choose next status
+
+-# = form_tag user_profiles_path, :method => :get, :id => 'ratings_form' do
+-#   = hidden_field_tag "title_sort", true if @title_header
+-#   = hidden_field_tag ":release_date_sort", true if @date_header
+-#   = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
+
+%table#update_request_status.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Status Code
+      -#%th{:class => @date_header}= link_to 'Release Date', user_profiles_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
+      %th Details
+  %tbody
+    = form_tag update_request_status_path(@order_id), :method => :put do
+      - (@current_status...5).each do |i|
+        %tr
+          %td= i
+          %td= status_details(i)
+          %td= radio_button_tag(:next_status, value=i)
+        -#params[:carrier_id] = order.id
+      = submit_tag 'Update to next status'
+      -#缩进很重要
+-# = link_to 'Confirm this order', order_generation_confirm_path
+-#TODO: Change this to go back to previous page
