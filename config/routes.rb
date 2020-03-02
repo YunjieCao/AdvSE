@@ -1,4 +1,6 @@
 Rottenpotatoes::Application.routes.draw do
+  get 'users/new'
+
   get 'movies/test'
   resources :movies
   # map '/' to be a redirect to '/movies'
