@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20200301142620) do
-=======
 ActiveRecord::Schema.define(version: 20200302043919) do
->>>>>>> modeling-users
 
   create_table "addresses", primary_key: "address_id", force: :cascade do |t|
     t.string "line1",        limit: 45
