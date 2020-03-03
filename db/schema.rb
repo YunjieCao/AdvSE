@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200302043919) do
+ActiveRecord::Schema.define(version: 20200303150701) do
 
   create_table "addresses", primary_key: "address_id", force: :cascade do |t|
     t.string "line1",        limit: 45
@@ -55,11 +55,16 @@ ActiveRecord::Schema.define(version: 20200302043919) do
   add_index "task_applications", ["order_id", "user_id"], name: "uniq", unique: true, using: :btree
 
   create_table "user_profiles", force: :cascade do |t|
-    t.string  "name",       limit: 20, null: false
-    t.string  "email",      limit: 45
-    t.string  "occupation", limit: 45
-    t.integer "verified",   limit: 4
+    t.string   "name",            limit: 20,  null: false
+    t.string   "email",           limit: 45
+    t.string   "occupation",      limit: 45
+    t.integer  "verified",        limit: 4
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
+
+  add_index "user_profiles", ["email"], name: "index_user_profiles_on_email", unique: true, using: :btree
 
   create_table "user_verifications", id: false, force: :cascade do |t|
     t.integer "verification_id", limit: 4,  null: false

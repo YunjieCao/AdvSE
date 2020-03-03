@@ -7,17 +7,25 @@ class UserProfilesController < ApplicationController
   end
 
   def index
-    @user_profiles = User_profile.all
+    @user_profile = User_profile.all
   end
 
   def new
+    @user_profile = User_profile.new
     # default: render 'new' template
   end
 
   def create
-    @user_profile = User_profile.create!(user_profile_params)
-    flash[:notice] = "#{@user_profile.name} was successfully created."
-    redirect_to user_profiles_path
+    @user_profile = User_profile.new(user_params)
+    if @user_profile.save
+      flash[:success] = "Welcome to the Sterna!"
+      redirect_to user_profiles_path # should redirect to user center
+    else
+      render 'new'
+    end
+    #@user_profile = User_profile.create!(user_profile_params)
+    #flash[:notice] = "#{@user_profile.name} was successfully created."
+    #redirect_to user_profiles_path
   end
 
   def edit
@@ -42,10 +50,10 @@ class UserProfilesController < ApplicationController
      flash[:notice] = "Test test"
      redirect_to user_profiles_path
   end
-  
+
   private
-    def user_profile_params
-      params.require(:user_profile).permit(:name, :email, :occupation)
+    def user_params
+      params.require(:user_profile).permit(:name, :email, :occupation, :password, :password_confirmation)
     end
 
 end
