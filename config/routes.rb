@@ -3,7 +3,7 @@ Rottenpotatoes::Application.routes.draw do
 
   get 'static_pages/help'
   get 'signup' => 'user_profiles#new'
-
+  get 'users/new'
   get 'movies/test'
   resources :movies
   # map '/' to be a redirect to '/movies'

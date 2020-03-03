@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20200301142620) do
+=======
+ActiveRecord::Schema.define(version: 20200302043919) do
+>>>>>>> modeling-users
 
   create_table "addresses", primary_key: "address_id", force: :cascade do |t|
     t.string "line1",        limit: 45
@@ -68,5 +72,15 @@ ActiveRecord::Schema.define(version: 20200301142620) do
     t.date    "start_date"
     t.string  "end_date",        limit: 45
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "password_digest", limit: 255
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
