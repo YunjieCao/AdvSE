@@ -2,7 +2,8 @@ Rottenpotatoes::Application.routes.draw do
   get 'static_pages/home'
 
   get 'static_pages/help'
-  get 'signup' => 'user_profiles#new'
+  #get 'signup' => 'user_profiles#new'
+  get 'signup' => 'users#new'
   get 'users/new'
   get 'movies/test'
   resources :movies
