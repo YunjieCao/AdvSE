@@ -1,4 +1,6 @@
 Rottenpotatoes::Application.routes.draw do
+  get 'sessions/new'
+
   get 'static_pages/home'
 
   get 'static_pages/help'
@@ -15,4 +17,8 @@ Rottenpotatoes::Application.routes.draw do
   resources :track_request
   resources :update_request_status
   get 'order_generation/confirm'
+
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
 end
