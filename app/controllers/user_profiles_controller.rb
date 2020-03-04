@@ -1,17 +1,28 @@
 class UserProfilesController < ApplicationController
 
   def show
+    # This will show User Center page.
     id = params[:id] # retrieve user_profile ID from URI route
     @user_profile = User_profile.find(id) # look up user_profile by unique ID
+    @requester_requests = Request.where(requester_id: @user_profile.id)
+    @carrier_requests = Request.where(carrier_id: @user_profile.id)
+    @applications = Task_application.where(user_id: @user_profile.id)
     # will render app/views/user_profiles/show.<extension> by default
   end
 
   def index
-    @user_profiles = User_profile.all
+    if session[:user_id]
+      @user_profile = User_profile.find(session[:user_id])
+      redirect_to user_profile_path(@user_profile)
+    else
+      @user_profiles = User_profile.all # TODO: Delete this line
+      # TODO: Redirect to login page
+    end
   end
 
   def new
     # default: render 'new' template
+    # TODO: Create a register page
   end
 
   def create

@@ -1,6 +1,6 @@
 -# in app/views/user_profiles/show.html.haml
 
-%h3 Details about #{@user_profile.name}
+%h3 User Center of #{@user_profile.name}
 
 %ul#details
   %li
@@ -9,10 +9,67 @@
   %li
     email:
     = @user_profile.email
-%h4 Description:
+  %li
+    job:
+    = @user_profile.occupation
+  %li
+    valid verification:
+    = :__TODO__
 
-%p#description= @user_profile.occupation
+= link_to 'Edit User Profile', edit_user_profile_path(@user_profile)
 
-= link_to 'Edit', edit_user_profile_path(@user_profile)
-= button_to 'Delete', user_profile_path(@user_profile), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-= link_to 'Back to user_profile list', user_profiles_path
+%h4 Current published requests as the requester:
+
+%table#requester_requests.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Title
+      %th Status
+      %th More Info
+      %th Actions
+  %tbody
+    - @requester_requests.each do |request|
+      %tr
+        %td= request.title
+        %td= request.status
+        %td= link_to "Detail", request_path(request) # TODO: Path detail
+        %td
+          = link_to "Pick a carrier", pick_carrier_path(request) # TODO: Path pick a carrier
+          = link_to "Track status", track_request_path(request) # TODO: Track status
+
+%h4 Current taken requests as the carrier:
+
+%table#carrier_requests.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Title
+      %th Status
+      %th More Info
+      %th Actions
+
+  %tbody
+    - @carrier_requests.each do |request|
+      %tr
+        %td= request.title
+        %td= request.status 
+        %td= link_to "Detail", request_path(request) # TODO: Path detail
+        %td
+          = link_to "Confirm Contract", request_path(request) # TODO: Update Status
+          = link_to "Update Status", request_path(request) # TODO: Update Status
+
+%h4 Current pending applications as the carrier:
+
+%table#applications.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Order_id
+      %th Actions
+
+  %tbody
+    - @applications.each do |appl|
+      %tr
+        %td= appl.id
+        %td
+          = link_to "Cancel Application", request_path(request) # TODO: Delete Status
+
+= link_to 'Back to Home page', root_path
