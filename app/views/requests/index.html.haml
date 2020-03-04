@@ -1,0 +1,28 @@
+-#  This file is app/views/requests/index.html.haml
+%h2 All Requests
+
+= form_tag requests_path, :method => :get, :id => 'ratings_form' do
+  = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
+
+%table#requests.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Title
+      %th Source City
+      %th Dest City
+      %th Start Date
+      %th End Date
+      %th More details
+  %tbody
+    - @request.each do |request|
+      %tr
+        %td= request.title
+        %td= "request.source_address.city" #__TODO__(csw1995)
+        %td= "request.dest_address.city" #__TODO__(csw1995)
+        %td= request.expected_delivery_start
+        %td= request.expected_delivery_end
+        %td= link_to "More details", request_path(request)
+
+= link_to 'I want to post new request', new_request_path
+
+= debug(params)
