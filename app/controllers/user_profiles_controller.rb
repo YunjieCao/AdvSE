@@ -1,4 +1,5 @@
 class UserProfilesController < ApplicationController
+  before_action :require_login, except: [:new, :create]
 
   def show
     # This will show User Center page.
@@ -11,13 +12,7 @@ class UserProfilesController < ApplicationController
   end
 
   def index
-    if session[:user_id]
-      @user_profile = User_profile.find(session[:user_id])
-      redirect_to user_profile_path(@user_profile)
-    else
-      @user_profile = User_profile.all # TODO: Delete this line
-      # TODO: Redirect to login page
-    end
+    redirect_to user_profile_path(logged_id)
   end
 
   def new

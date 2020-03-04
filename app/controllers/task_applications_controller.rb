@@ -8,7 +8,7 @@ class TaskApplicationsController < ApplicationController
         @applications = TaskApplication.where(order_id: request_id)
       else
         flash[:notice] = "order_id not found"
-        redirect_to user_profile_path(logged_id)
+        redirect_to user_profiles_path
       end
     end
 
@@ -19,10 +19,10 @@ class TaskApplicationsController < ApplicationController
       @application.user_id = logged_id
       if @application.save
         flash[:success] = "New application successfully created"
-        redirect_to user_profile_path(logged_id)
+        redirect_to user_profiles_path
       else
         flash[:notice] = "Fail to apply"
-        redirect_to user_profile_path(logged_id)
+        redirect_to user_profiles_path
       end
     end
 
@@ -31,7 +31,7 @@ class TaskApplicationsController < ApplicationController
       @application = TaskApplication.find(params[:id])
       @application.destroy
       flash[:notice] = "Task Application '#{@application.id}' deleted."
-      redirect_to user_profile_path(logged_id)
+      redirect_to user_profiles_path
     end
 
     private
@@ -40,13 +40,5 @@ class TaskApplicationsController < ApplicationController
             :id
         )
     end
-
-    def require_login
-        unless logged_in?
-          flash[:notice] = "You must be logged in to access this section"
-          redirect_to login_path # halts request cycle
-        end
-    end
-
 end
   

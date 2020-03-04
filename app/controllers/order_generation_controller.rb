@@ -26,18 +26,11 @@ class OrderGenerationController < ApplicationController
     application.confirm_order
     
     flash[:success] = "Order #{application.order_id} was successfully generated."
-    redirect_to user_profile_path(logged_id)
+    redirect_to user_profiles_path
   end
 
   private
   def request_params
     params.require(:request).permit(:id, :carrier_id, :status)
-  end
-
-  def require_login
-      unless logged_in?
-        flash[:notice] = "You must be logged in to access this section"
-        redirect_to login_path # halts request cycle
-      end
   end
 end
