@@ -1,4 +1,4 @@
--# in app/views/pick_carrier/show.html.haml
+-# in app/views/task_applications/show.html.haml
 
 %h3 Current applications of #{@request.title}
 
@@ -12,6 +12,6 @@
       %tr
         %td= appl.user_id
         %td
-          = link_to "Pick", new_request_path(request) # TODO: Path pick a carrier
+          = link_to "Pick", order_generation_path(appl), method: :put # TODO: Path order generation
 
 = link_to 'Back to Home page', root_path

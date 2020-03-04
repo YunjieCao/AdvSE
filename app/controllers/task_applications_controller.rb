@@ -1,4 +1,4 @@
-class PickCarrierController < ApplicationController
+class TaskApplicationsController < ApplicationController
     before_action :require_login
 
     def index

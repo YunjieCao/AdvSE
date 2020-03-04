@@ -14,7 +14,7 @@ Rottenpotatoes::Application.routes.draw do
   resources :users
   resources :user_profiles
   resources :requests
-  resources :pick_carrier
+  resources :task_applications
   resources :order_generation
   resources :track_request
   resources :update_request_status
