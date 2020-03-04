@@ -72,4 +72,8 @@
         %td
           = link_to "Cancel Application", request_path(request) # TODO: Delete Status
 
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+= button_to 'Delete', user_profile_path(@user_profile), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
 = link_to 'Back to Home page', root_path
+
+= debug(params)

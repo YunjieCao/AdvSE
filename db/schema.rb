@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200301040343) do
+ActiveRecord::Schema.define(version: 20200303150701) do
 
-  create_table "addresses", force: :cascade do |t|
-    t.string  "line1",        limit: 45
-    t.string  "line2",        limit: 45
-    t.string  "city",         limit: 45
-    t.string  "state",        limit: 45
-    t.string  "country",      limit: 45
-    t.string  "postal_code",  limit: 45
-    t.string  "phone_number", limit: 45
-    t.integer "user_id",      limit: 4
+  create_table "addresses", primary_key: "address_id", force: :cascade do |t|
+    t.string "line1",        limit: 45
+    t.string "line2",        limit: 45
+    t.string "city",         limit: 45
+    t.string "state",        limit: 45
+    t.string "country",      limit: 45
+    t.string "postal_code",  limit: 45
+    t.string "phone_number", limit: 45
+    t.string "user_id",      limit: 45
   end
 
   create_table "movies", force: :cascade do |t|
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20200301040343) do
     t.integer  "status",                  limit: 4
     t.integer  "source_addr_id",          limit: 4
     t.integer  "dest_addr_id",            limit: 4
-    t.datetime "create_timestamp"
+    t.datetime "create_time_stampmp"
     t.datetime "expected_delivery_start"
     t.datetime "expected_delivery_end"
   end
@@ -55,17 +55,33 @@ ActiveRecord::Schema.define(version: 20200301040343) do
   add_index "task_applications", ["order_id", "user_id"], name: "uniq", unique: true, using: :btree
 
   create_table "user_profiles", force: :cascade do |t|
-    t.string  "name",       limit: 20, null: false
-    t.string  "email",      limit: 45
-    t.string  "occupation", limit: 45
-    t.integer "verified",   limit: 4
+    t.string   "name",            limit: 20,  null: false
+    t.string   "email",           limit: 45
+    t.string   "occupation",      limit: 45
+    t.integer  "verified",        limit: 4
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  create_table "user_verifications", force: :cascade do |t|
-    t.integer "user_id",    limit: 4, null: false
-    t.integer "status",     limit: 4
+  add_index "user_profiles", ["email"], name: "index_user_profiles_on_email", unique: true, using: :btree
+
+  create_table "user_verifications", id: false, force: :cascade do |t|
+    t.integer "verification_id", limit: 4,  null: false
+    t.integer "user_id",         limit: 4,  null: false
+    t.integer "status",          limit: 4
     t.date    "start_date"
-    t.date    "end_date"
+    t.string  "end_date",        limit: 45
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "password_digest", limit: 255
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

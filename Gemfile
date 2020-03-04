@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.4.0'
 gem 'rails', '4.2.10'
+gem 'bcrypt', '3.1.7'
+gem 'bootstrap-sass', '~> 3.4.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -18,7 +20,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'cucumber-rails' 
+  gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
 end
 group :production do

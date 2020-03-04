@@ -14,7 +14,7 @@
       %th{:class => @date_header}= link_to 'Release Date', user_profiles_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
       %th More Info
   %tbody
-    - @user_profiles.each do |user_profile|
+    - @user_profile.each do |user_profile|
       %tr
         %td= user_profile.name
         %td= user_profile.email
@@ -22,3 +22,5 @@
         %td= link_to "More about #{user_profile.name}", user_profile_path(user_profile)
 
 = link_to 'Add new user_profile', new_user_profile_path
+
+= debug(params)
