@@ -6,12 +6,13 @@ class TaskApplication < ActiveRecord::Base
         'task_applications.order_id=?', order_id).select('user_profiles.name, user_profiles.occupation, user_profiles.id')
   end
 
-  def self.confirm_order(order_id, picked_carrier_id)
-    request_info = {:id=>order_id, :carrier_id=>picked_carrier_id}
-    current_request = Request.find_by(id: order_id)
-    current_request.carrier_id = picked_carrier_id
+  def confirm_order
+    current_request = Request.find_by(self.order_id)
+    current_request.carrier_id = self.user_id
     current_request.status = 1
-    current_request.save
+    if current_request.save
+      self.destroy
+    end
   end
 end
 
