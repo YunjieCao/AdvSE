@@ -1,0 +1,32 @@
+-# in app/views/requests/show.html.haml
+
+%h3 Detailed information for #{@request.title}
+
+%ul#details
+  %li
+    title:
+    = @request.title
+  %li
+    Description:
+    = @request.description
+  %li
+    Source address:
+    = "__TODO__"
+  %li
+    Destination address:
+    = "__TODO__"
+  %li
+    Expected Delivery Start Date:
+    = @request.expected_delivery_start
+  %li
+    Expected Delivery End Date:
+    = @request.expected_delivery_end
+
+= link_to 'Edit', edit_request_path(@request)
+= link_to 'Back to marketplace', requests_path
+
+= form_tag task_applications_path do
+  = hidden_field :request, :id
+  = submit_tag 'Apply to be carrier', :class => 'btn btn-primary'
+
+= debug(params)

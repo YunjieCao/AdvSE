@@ -1,0 +1,25 @@
+%h2 Post New Request
+
+= form_tag requests_path do
+
+  = label :request, :title, 'Title'
+  = text_field :request, 'title'
+
+  = label :request, :description, 'Description'
+  = text_field :request, 'description'
+
+  = label :request, :source_addr_id, 'Source address'
+  = select :request, :source_addr_id, @address
+
+  = label :request, :dest_addr_id, 'Destination address'
+  = select :request, :dest_addr_id, @address
+
+  = label :request, :expected_delivery_start, 'Expected Delivery Start Date'
+  = date_select :request, :expected_delivery_start
+
+  = label :request, :expected_delivery_end, 'Expected Delivery End Date'
+  = date_select :request, :expected_delivery_end
+
+  = submit_tag 'Post Request', :class => 'btn btn-primary'
+
+  = debug(params)

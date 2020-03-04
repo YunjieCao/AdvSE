@@ -13,6 +13,8 @@ Rottenpotatoes::Application.routes.draw do
   root :to => redirect('static_pages/home')
   resources :users
   resources :user_profiles
+  resources :requests
+  resources :task_applications
   resources :order_generation
   resources :track_request
   resources :update_request_status

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome to the Sterna!"
-      redirect_to user_profiles_path # should redirect to user center
+      redirect_to user_profile_path(@user)
     else
       render 'new'
     end
