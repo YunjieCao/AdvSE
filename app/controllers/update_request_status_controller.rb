@@ -28,7 +28,6 @@ class UpdateRequestStatusController < ApplicationController
     carrier_id = params[:next_status]
     Request.update_status(params[:id], params[:next_status])
     flash[:notice] = "Order #{order_id} status was successfully updated."
-    redirect_to user_profiles_path
-    #TODO: redirect to previous page
+    redirect_to request_path(order_id)
   end
 end

@@ -17,8 +17,6 @@ class UserProfilesController < ApplicationController
 
   def new
     @user_profile = User_profile.new
-    # default: render 'new' template
-    # TODO: Create a register page
   end
 
   def create
