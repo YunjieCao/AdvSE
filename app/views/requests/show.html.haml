@@ -25,4 +25,8 @@
 = link_to 'Edit', edit_request_path(@request)
 = link_to 'Back to marketplace', requests_path
 
+= form_tag pick_carrier_index_path do
+  = hidden_field :request, :id
+  = submit_tag 'Apply to be carrier', :class => 'btn btn-primary'
+
 = debug(params)

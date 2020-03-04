@@ -32,9 +32,9 @@
       %tr
         %td= request.title
         %td= request.status
-        %td= link_to "Detail", request_path(request) # TODO: Path detail
+        %td= link_to "Detail", request_path(request)
         %td
-          = link_to "Pick a carrier", pick_carrier_path(request) # TODO: Path pick a carrier
+          = link_to "Pick a carrier", pick_carrier_index_path(:order_id => request.id)
           = link_to "Track status", track_request_path(request) # TODO: Track status
 
 %h4 Current taken requests as the carrier:
@@ -68,12 +68,10 @@
   %tbody
     - @applications.each do |appl|
       %tr
-        %td= appl.id
+        %td= appl.order_id #__TODO__(csw1995): Use foreign key to get details.
         %td
-          = link_to "Cancel Application", request_path(request) # TODO: Delete Status
+          = link_to "Cancel Application", pick_carrier_path(appl), :method => :delete
 
-= link_to 'Edit', edit_user_profile_path(@user_profile)
-= button_to 'Delete', user_profile_path(@user_profile), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
 = link_to 'Back to Home page', root_path
 
 = debug(params)

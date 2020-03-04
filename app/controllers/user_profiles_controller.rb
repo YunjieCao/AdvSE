@@ -6,7 +6,7 @@ class UserProfilesController < ApplicationController
     @user_profile = User_profile.find(id) # look up user_profile by unique ID
     @requester_requests = Request.where(requester_id: @user_profile.id)
     @carrier_requests = Request.where(carrier_id: @user_profile.id)
-    @applications = Task_application.where(user_id: @user_profile.id)
+    @applications = TaskApplication.where(user_id: @user_profile.id)
     # will render app/views/user_profiles/show.<extension> by default
   end
 
