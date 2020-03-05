@@ -21,5 +21,12 @@ module SessionsHelper
       redirect_to login_path # halts request cycle
     end
   end
-  
+
+  # Confirms the correct user.
+  def correct_user
+    flash[:notice] =  "Please log in."
+    redirect_to(login_path) unless params[:id] == logged_id
+  end
+
+
 end

@@ -1,5 +1,6 @@
 class UserProfilesController < ApplicationController
   before_action :require_login, except: [:new, :create]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
     # This will show User Center page.
