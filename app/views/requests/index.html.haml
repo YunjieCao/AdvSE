@@ -8,6 +8,7 @@
   %thead
     %tr
       %th Title
+      %th Value($)
       %th Source City
       %th Dest City
       %th Start Date
@@ -17,6 +18,7 @@
     - @request.each do |request|
       %tr
         %td= request.title
+        %td= request.value
         %td= "request.source_address.city" #__TODO__(csw1995)
         %td= "request.dest_address.city" #__TODO__(csw1995)
         %td= request.expected_delivery_start
