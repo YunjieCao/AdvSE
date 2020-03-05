@@ -30,7 +30,7 @@ class TaskApplicationsController < ApplicationController
       # __TODO__(csw1995): Validate Carrier
       @application = TaskApplication.find(params[:id])
       @application.destroy
-      flash[:notice] = "Task Application '#{@application.id}' deleted."
+      flash[:success] = "Task Application '#{@application.id}' deleted."
       redirect_to user_profiles_path
     end
 
