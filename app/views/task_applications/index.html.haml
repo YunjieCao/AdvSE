@@ -5,13 +5,13 @@
 %table#applications.table.table-striped.col-md-12
   %thead
     %tr
-      %th ID
+      %th Carrier ID
       %th Actions
   %tbody
     - @applications.each do |appl|
       %tr
         %td= appl.user_id
         %td
-          = link_to "Pick", order_generation_path(appl), method: :put # TODO: Path order generation
+          = link_to "Pick", order_generation_path(appl.id), method: :put
 
 = link_to 'Back to Home page', root_path

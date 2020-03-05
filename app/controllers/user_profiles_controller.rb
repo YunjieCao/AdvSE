@@ -37,7 +37,7 @@ class UserProfilesController < ApplicationController
 
   def update
     @user_profile = User_profile.find params[:id]
-    @user_profile.update_attributes!(user_profile_params)
+    @user_profile.update_attributes!(user_params)
     flash[:notice] = "#{@user_profile.name} was successfully updated."
     redirect_to user_profile_path(@user_profile)
   end

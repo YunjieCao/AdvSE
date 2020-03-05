@@ -43,7 +43,9 @@ class RequestsController < ApplicationController
     def request_params
         params.require(:request).permit(
             :title, :description, :img_url,
-            :source_addr_id, :dest_addr_id
+            :value,
+            :source_addr_id, :dest_addr_id,
+            :expected_delivery_start, :expected_delivery_end,
         )
     end
 end

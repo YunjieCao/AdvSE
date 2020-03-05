@@ -1,9 +1,9 @@
-class UpdateRequestStatusController < ApplicationController
+class UpdateRequestStatusesController < ApplicationController
   def index
-    params[:order_id] = 12
     @current_status = Request.get_status(params[:order_id]).to_i + 1
     @order_id = params[:order_id]
-    if @current_status == 5 #TODO: 5 == total num of status
+    @status_num = Request.status_num
+    if @current_status == Request.status_num # can not change if get to the end
       flash[:notice] = "Already finished. Can not update any more!"
       redirect_to user_profiles_path
     end
@@ -27,7 +27,7 @@ class UpdateRequestStatusController < ApplicationController
     order_id = params[:id]
     carrier_id = params[:next_status]
     Request.update_status(params[:id], params[:next_status])
-    flash[:notice] = "Order #{order_id} status was successfully updated."
-    redirect_to request_path(order_id)
+    flash[:success] = "Order #{order_id} status was successfully updated."
+    redirect_to user_profiles_path
   end
 end
