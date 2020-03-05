@@ -35,7 +35,6 @@
         %td= link_to "Detail", request_path(request)
         %td
           = link_to "Pick a carrier", task_applications_path(:order_id => request.id)
-          = link_to "Track status", track_request_path(request) # TODO: Track status
 
 %h4 Current taken requests as the carrier:
 
@@ -54,8 +53,8 @@
         %td= request.status 
         %td= link_to "Detail", request_path(request)
         %td
-          = link_to "Confirm Contract", request_path(request) # TODO: Update Status
-          = link_to "Update Status", request_path(request) # TODO: Update Status
+          = link_to "Confirm Contract", update_request_status_path(:id=>request.id, :next_status=>2), :method => :put
+          = link_to "Update Status", update_request_statuses_path(:order_id=>request.id)
 
 %h4 Current pending applications as the carrier:
 
