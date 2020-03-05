@@ -6,8 +6,8 @@ class TaskApplication < ActiveRecord::Base
         'task_applications.order_id=?', order_id).select('user_profiles.name, user_profiles.occupation, user_profiles.id')
   end
 
-  def confirm_order
-    current_request = Request.find_by(self.order_id)
+  def pick_carrier
+    current_request = Request.find(self.order_id)
     current_request.carrier_id = self.user_id
     current_request.status = 1
     if current_request.save

@@ -9,12 +9,14 @@ class Request < ActiveRecord::Base
     when 0
       "Pending"
     when 1
-      "Generated"
+      "Waiting carrier confirmation"
     when 2
-      "Picked up by carrier"
+      "Generated"
     when 3
-      "Arrive at desitination city"
+      "Picked up by carrier"
     when 4
+      "Arrive at desitination city"
+    when 5
       "Finished"
     end
   end
@@ -24,4 +26,9 @@ class Request < ActiveRecord::Base
     order.status = status
     order.save
   end
+
+  def self.status_num
+    return 6
+  end
+
 end
