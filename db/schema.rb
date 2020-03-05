@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200303150701) do
+ActiveRecord::Schema.define(version: 20200305202146) do
 
   create_table "addresses", force: :cascade do |t|
     t.string  "line1",        limit: 45
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20200303150701) do
     t.datetime "create_timestamp"
     t.datetime "expected_delivery_start"
     t.datetime "expected_delivery_end"
+    t.decimal  "value",                                precision: 8, scale: 2
   end
 
   create_table "task_applications", force: :cascade do |t|
