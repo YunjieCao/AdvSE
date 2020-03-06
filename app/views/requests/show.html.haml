@@ -14,16 +14,16 @@
     = @request.value
   %li
     Source address:
-    = "__TODO__"
+    = @request.get_source_address.show
   %li
     Destination address:
-    = "__TODO__"
+    = @request.get_dest_address.show
   %li
     Expected Delivery Start Date:
-    = @request.expected_delivery_start
+    = @request.expected_delivery_start.strftime("%B %d, %Y")
   %li
     Expected Delivery End Date:
-    = @request.expected_delivery_end
+    = @request.expected_delivery_end.strftime("%B %d, %Y")
 
 = link_to 'Edit', edit_request_path(@request)
 = link_to 'Back to marketplace', requests_path

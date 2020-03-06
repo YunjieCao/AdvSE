@@ -13,7 +13,8 @@ class RequestsController < ApplicationController
   
     def new
       @request = Request.new
-      @address = [] #__TODO__(csw1995): find addresses of the user
+      address_data = Address.where(user_id: logged_id)
+      @address = address_data.map { |addr| addr.select_option }
     end
   
     def create
@@ -30,7 +31,8 @@ class RequestsController < ApplicationController
   
     def edit
       @request = Request.find params[:id]
-      @address = [] #__TODO__(csw1995): find addresses of the user
+      address_data = Address.where(user_id: logged_id)
+      @address = address_data.map { |addr| addr.select_option }
     end
   
     def update
