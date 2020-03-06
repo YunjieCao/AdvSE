@@ -19,10 +19,10 @@
       %tr
         %td= request.title
         %td= request.value
-        %td= "request.source_address.city" #__TODO__(csw1995)
-        %td= "request.dest_address.city" #__TODO__(csw1995)
-        %td= request.expected_delivery_start
-        %td= request.expected_delivery_end
+        %td= request.get_source_address.city
+        %td= request.get_dest_address.city
+        %td= request.expected_delivery_start.strftime("%B %d, %Y")
+        %td= request.expected_delivery_end.strftime("%B %d, %Y")
         %td= link_to "More details", request_path(request)
 
 = link_to 'I want to post new request', new_request_path
