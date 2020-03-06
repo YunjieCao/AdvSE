@@ -17,6 +17,7 @@ module NavigationHelpers
     when /^the movies page$/ then '/movies'
     when /^the user center page$/ then '/user_profiles'
     when /^the marketplace page$/ then '/requests'
+    when /^the address book page$/ then '/addresses'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
