@@ -1,0 +1,27 @@
+-# in app/views/addresses/show.html.haml
+
+%h3 Details about #{@address.id}
+
+%ul#details
+  %li
+    Line1:
+    = @address.line1
+  %li
+    Line2:
+    = @address.line2
+  %li
+    City:
+    = @address.city
+  %li
+    Country:
+    = @address.country
+  %li
+    Postal Code:
+    = @address.postal_code
+  %li
+    Phone Number:
+    = @address.phone_number
+
+= link_to 'Edit', edit_address_path(@address)
+= button_to 'Delete', address_path(@address), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
+= link_to 'Back to address list', addresses_path

@@ -1,0 +1,16 @@
+-#  This file is app/views/addresses/index.html.haml
+%h2 All Addresses
+
+%table#addresses.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Address ID
+      %th More Info
+  %tbody
+    - @addresses.each do |address|
+      %tr
+        %td= address.id
+        %td= link_to "More about #{address.id}", address_path(address)
+
+= link_to 'Add new address', new_address_path
+= link_to 'Back to User Center', user_profiles_path

@@ -1,0 +1,28 @@
+%h2 Create New Address
+
+= form_tag addresses_path do
+
+  = label :address, :line1, 'Line1'
+  = text_field :address, 'line1'
+
+  = label :address, :line2, 'Line2'
+  = text_field :address, 'line2'
+
+  = label :address, :city, 'City'
+  = text_field :address, 'city'
+
+  = label :address, :state, 'State'
+  = text_field :address, 'state'
+
+  = label :address, :country, 'Country'
+  = text_field :address, 'country'
+
+  = label :address, :postal_code, 'Postal Code'
+  = text_field :address, 'postal_code'
+
+  = label :address, :phone_number, 'Phone Number'
+  = text_field :address, 'phone_number'
+
+  = submit_tag 'Save Changes', :class => 'btn btn-primary'
+
+= link_to 'Back to User Center', user_profiles_path
