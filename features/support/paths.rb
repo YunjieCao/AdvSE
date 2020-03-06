@@ -16,6 +16,8 @@ module NavigationHelpers
     when /^the (RottenPotatoes )?home\s?page$/ then '/requests'
     when /^the movies page$/ then '/movies'
     when /^the users page$/ then '/user_profiles'
+    when /^marketplace$/ then '/requests'
+    when /^user center$/ then 'user_profiles'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
