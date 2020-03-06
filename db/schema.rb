@@ -24,15 +24,6 @@ ActiveRecord::Schema.define(version: 20200305202146) do
     t.integer "user_id",      limit: 4
   end
 
-  create_table "movies", force: :cascade do |t|
-    t.string   "title",        limit: 255
-    t.string   "rating",       limit: 255
-    t.text     "description",  limit: 65535
-    t.datetime "release_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "requests", force: :cascade do |t|
     t.string   "title",                   limit: 45
     t.text     "description",             limit: 255
@@ -73,15 +64,5 @@ ActiveRecord::Schema.define(version: 20200305202146) do
     t.date    "start_date"
     t.date    "end_date"
   end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.string   "email",           limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "password_digest", limit: 255
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
