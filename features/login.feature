@@ -1,8 +1,8 @@
 Feature: Log in user
 
-  As a concerned parent
-  So that I can quickly browse movies appropriate for my family
-  I want to see movies matching only certain MPAA ratings
+  As a member
+  So that I can publish or take orders
+  I want to log in the website
 
 Background: users have been added to database
 
