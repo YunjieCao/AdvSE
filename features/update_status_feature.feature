@@ -27,15 +27,26 @@ Feature: Pick carrier
     Then I should see "User Center"
     Then I follow "Update Status"
     Then I should see "Choose next status"
-    When I check ""
-#
-#    Then I follow "Add new user_profile"
-#    Then I should see "Create New User"
-#    Then I fill in "user_profile_name" with "testuser1"
-#    Then I fill in "user_profile_email" with "testuser1@test.com"
-#    Then I fill in "user_profile_occupation" with "student"
-#    Then I press "Save Changes"
-#    Then I should see "testuser1 was successfully created."
+    When I choose "next_status_3"
+      #choose for radio button, check for check box
+    Then I press "Update to next status"
+    Then I should see "Successfully pick up"
+
+  Scenario: Reject update after finished
+    Given I am on the login page
+    Then I fill in "session_email" with "momohama@hotmail.com"
+    Then I fill in "session_password" with "123456"
+    When I press "Log in"
+    Then I should see "User Center"
+    Then I follow "Update Status"
+    Then I should see "Choose next status"
+    When I choose "next_status_5"
+      #choose for radio button, check for check box
+    Then I press "Update to next status"
+    Then I should see "Finished"
+    Then I follow "Update Status"
+    Then I should see "Already finished."
+
 
 
 
