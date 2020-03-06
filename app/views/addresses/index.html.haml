@@ -4,13 +4,25 @@
 %table#addresses.table.table-striped.col-md-12
   %thead
     %tr
-      %th Address ID
+      %th Line1
+      %th Line2
+      %th City
+      %th State
+      %th Country
+      %th Postal Code
+      %th Phone Number
       %th More Info
   %tbody
     - @addresses.each do |address|
       %tr
-        %td= address.id
-        %td= link_to "More about #{address.id}", address_path(address)
+        %td= address.line1
+        %td= address.line2
+        %td= address.city
+        %td= address.state
+        %td= address.country
+        %td= address.postal_code
+        %td= address.phone_number
+        %td= link_to "More", address_path(address)
 
 = link_to 'Add new address', new_address_path
 = link_to 'Back to User Center', user_profiles_path
