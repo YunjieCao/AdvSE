@@ -1,5 +1,7 @@
 class UserProfilesController < ApplicationController
-  before_action :require_login, except: [:new, :create]
+  # before_action :require_login, except: [:new, :create]
+  before_action :require_login, only: [:index, :show, :edit, :update]
+  before_action :correct_user, only: [:show, :edit, :update]
 
   def show
     # This will show User Center page.
@@ -22,7 +24,7 @@ class UserProfilesController < ApplicationController
   def create
     @user_profile = User_profile.new(user_params)
     if @user_profile.save
-      flash[:success] = "Welcome to the Sterna!"
+      flash[:success] = "Welcome to Sterna!"
       log_in @user_profile
       redirect_to user_profile_path(@user_profile)
     else
@@ -36,14 +38,23 @@ class UserProfilesController < ApplicationController
 
   def update
     @user_profile = User_profile.find params[:id]
-    @user_profile.update_attributes!(user_params)
-    flash[:notice] = "#{@user_profile.name} was successfully updated."
-    redirect_to user_profile_path(@user_profile)
+    if @user_profile.update_attributes(user_params)
+      flash[:notice] = "#{@user_profile.name} was successfully updated."
+      redirect_to user_profile_path(@user_profile)
+    else
+      render 'edit'
+    end
   end
 
   private
     def user_params
       params.require(:user_profile).permit(:name, :email, :occupation, :password, :password_confirmation)
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      @user_profile = User_profile.find(params[:id])
+      redirect_to(login_path) unless @user_profile == current_user
     end
 
 end
