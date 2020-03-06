@@ -17,16 +17,13 @@ module SessionsHelper
 
   def require_login
     unless logged_in?
-      flash[:notice] = "You must be logged in to access this section"
+      flash[:danger] = "You must be logged in to access this section"
       redirect_to login_path # halts request cycle
     end
   end
 
-  # Confirms the correct user.
-  def correct_user
-    flash[:notice] =  "Please log in."
-    redirect_to(login_path) unless params[:id] == logged_id
+  def current_user
+    User_profile.find_by(id: session[:user_profile_id])
   end
-
 
 end

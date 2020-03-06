@@ -1,0 +1,33 @@
+<!-- -# edit.html.haml using partial
+
+%h2 Edit Existing user_profile
+
+= form_tag user_profile_path(@user_profile), :method => :put do
+
+  = label :user, :name, 'Name'
+  = text_field :user_profile, 'name'
+
+  = label :user, :email, 'Email'
+  = text_field :user_profile, 'email'
+
+  = label :user, :occupation, 'Occupation'
+  = text_field :user_profile, 'occupation'
+
+  = submit_tag 'Update user_profile Info', :class => 'btn btn-primary' -->
+
+  <% provide(:title, "Edit user") %>
+  <h1>Update your profile</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@user_profile) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+  <% end %>
