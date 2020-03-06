@@ -13,12 +13,14 @@ class RequestsController < ApplicationController
   
     def new
       @request = Request.new
-      @address = [] #__TODO__(csw1995): find addresses of the user
+      address_data = Address.where(user_id: logged_id)
+      @address = address_data.map { |addr| addr.select_option }
     end
   
     def create
       @request = Request.new(request_params)
       @request.requester_id = logged_id
+      @request.status = 0
       if @request.save
         flash[:success] = "New request successfully posted"
         redirect_to requests_path # should redirect to marketplace
@@ -29,7 +31,8 @@ class RequestsController < ApplicationController
   
     def edit
       @request = Request.find params[:id]
-      @address = [] #__TODO__(csw1995): find addresses of the user
+      address_data = Address.where(user_id: logged_id)
+      @address = address_data.map { |addr| addr.select_option }
     end
   
     def update

@@ -32,7 +32,7 @@
     - @requester_requests.each do |request|
       %tr
         %td= request.title
-        %td= request.status
+        %td= status_details(request.status)
         %td= link_to "Detail", request_path(request)
         %td
           = link_to "Pick a carrier", task_applications_path(:order_id => request.id)
@@ -51,7 +51,7 @@
     - @carrier_requests.each do |request|
       %tr
         %td= request.title
-        %td= request.status 
+        %td= status_details(request.status)
         %td= link_to "Detail", request_path(request)
         %td
           = link_to "Confirm Contract", update_request_status_path(:id=>request.id, :next_status=>2), :method => :put

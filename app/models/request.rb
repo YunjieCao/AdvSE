@@ -14,4 +14,12 @@ class Request < ActiveRecord::Base
     return 6
   end
 
+  def get_source_address
+    Address.find(self.source_addr_id)
+  end
+
+  def get_dest_address
+    Address.find(self.dest_addr_id)
+  end
+
 end
