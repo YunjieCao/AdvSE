@@ -21,6 +21,7 @@ class RequestsController < ApplicationController
       @request = Request.new(request_params)
       @request.requester_id = logged_id
       @request.status = 0
+      @request.created_at = DateTime.now
       if @request.save
         flash[:success] = "New request successfully posted"
         redirect_to requests_path # should redirect to marketplace

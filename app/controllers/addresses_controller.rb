@@ -15,8 +15,7 @@ class AddressesController < ApplicationController
     end
   
     def create
-        @address = Address.create!(address_params)
-        @address.update_attributes!(:user_id => logged_id)
+        @address = Address.create!(address_params.merge(:user_id => logged_id))
         flash[:success] = "Address #{@address.id} was successfully created."
         redirect_to addresses_path
     end
