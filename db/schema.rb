@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200305202146) do
+ActiveRecord::Schema.define(version: 20200313183734) do
 
   create_table "addresses", force: :cascade do |t|
     t.string  "line1",        limit: 45
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20200305202146) do
     t.string  "phone_number", limit: 45
     t.integer "user_id",      limit: 4
   end
+
+  add_index "addresses", ["user_id"], name: "user_id_idx", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.string   "title",                   limit: 45
@@ -39,12 +41,18 @@ ActiveRecord::Schema.define(version: 20200305202146) do
     t.decimal  "value",                                precision: 8, scale: 2
   end
 
+  add_index "requests", ["carrier_id"], name: "FK_carrier_id_idx", using: :btree
+  add_index "requests", ["dest_addr_id"], name: "FK_dest_addr_id_idx", using: :btree
+  add_index "requests", ["requester_id"], name: "FK_requester_id_idx", using: :btree
+  add_index "requests", ["source_addr_id"], name: "FK_source_addr_id_idx", using: :btree
+
   create_table "task_applications", force: :cascade do |t|
     t.integer "order_id", limit: 4, null: false
     t.integer "user_id",  limit: 4, null: false
   end
 
   add_index "task_applications", ["order_id", "user_id"], name: "uniq", unique: true, using: :btree
+  add_index "task_applications", ["user_id"], name: "FK_user_id_idx", using: :btree
 
   create_table "user_profiles", force: :cascade do |t|
     t.string   "name",            limit: 20,  null: false
@@ -65,4 +73,14 @@ ActiveRecord::Schema.define(version: 20200305202146) do
     t.date    "end_date"
   end
 
+  add_index "user_verifications", ["user_id"], name: "FK_verif_user_id_idx", using: :btree
+
+  add_foreign_key "addresses", "user_profiles", column: "user_id", name: "FK_add_user_id"
+  add_foreign_key "requests", "addresses", column: "dest_addr_id", name: "FK_req_dest_addr_id"
+  add_foreign_key "requests", "addresses", column: "source_addr_id", name: "FK_req_source_addr_id"
+  add_foreign_key "requests", "user_profiles", column: "carrier_id", name: "FK_req_carrier_id"
+  add_foreign_key "requests", "user_profiles", column: "requester_id", name: "FK_req_requester_id"
+  add_foreign_key "task_applications", "requests", column: "order_id", name: "FK_app_order_id"
+  add_foreign_key "task_applications", "user_profiles", column: "user_id", name: "FK_app_user_id"
+  add_foreign_key "user_verifications", "user_profiles", column: "user_id", name: "FK_verif_user_id"
 end
