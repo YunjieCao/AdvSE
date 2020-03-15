@@ -9,7 +9,7 @@ class TaskApplication < ActiveRecord::Base
   def pick_carrier
     current_request = Request.find(self.order_id)
     current_request.carrier_id = self.user_id
-    current_request.status = 1
+    current_request.status = $carrier_unpaid
     if current_request.save
       self.destroy
     end
