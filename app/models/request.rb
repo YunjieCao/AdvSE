@@ -11,7 +11,15 @@ class Request < ActiveRecord::Base
   end
 
   def self.status_num
-    return 6
+    return $status_num
+  end
+
+  def self.get_requester_request(requester_id)
+    Request.where(requester_id: requester_id).order(:status)
+  end
+
+  def self.get_carrier_request(carrier_id)
+    Request.where(carrier_id: carrier_id).order(:status)
   end
 
   def get_source_address

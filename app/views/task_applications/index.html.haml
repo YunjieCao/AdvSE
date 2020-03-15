@@ -6,12 +6,15 @@
   %thead
     %tr
       %th Carrier ID
+      %th Carrier Name
       %th Actions
   %tbody
     - @applications.each do |appl|
       %tr
-        %td= appl.user_id
+        %td= appl.carrier_id
+        -#carrier id
+        %td=appl.name
         %td
-          = link_to "Pick", order_generation_path(appl.id), method: :put
+          = link_to "Pick", order_generation_path(appl.order_id), method: :put
 
 = link_to 'Back to Home page', root_path

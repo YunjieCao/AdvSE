@@ -5,7 +5,9 @@ class TaskApplicationsController < ApplicationController
       if params.key? :order_id
         request_id = params[:order_id]
         @request = Request.find(request_id)
-        @applications = TaskApplication.where(order_id: request_id)
+        @applications = TaskApplication.get_application(request_id) # join tables to get more information of carriers
+
+
       else
         flash[:notice] = "order_id not found"
         redirect_to user_profiles_path
