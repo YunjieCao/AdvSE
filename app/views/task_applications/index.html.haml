@@ -2,7 +2,7 @@
 
 %h3 Current applications of #{@request.title}
 
-%table#applications.table.table-striped.col-md-12
+%table#applications.table.table-striped.table-hover.col-md-12
   %thead
     %tr
       %th Carrier ID
@@ -11,9 +11,9 @@
   %tbody
     - @applications.each do |appl|
       %tr
-        %td = appl.carrier_id
+        %td= link_to appl.carrier_id, history_rates_path(:carrier_id => appl.carrier_id)
         -#carrier id
-        %td = appl.name
-        %td = link_to "Pick", order_generation_path(appl.id), method: :put
+        %td= appl.name
+        %td= link_to "Pick", order_generation_path(appl.id), method: :put
 
 = link_to 'Back to Home page', root_path

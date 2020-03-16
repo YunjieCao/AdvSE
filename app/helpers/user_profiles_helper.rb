@@ -26,8 +26,10 @@ module UserProfilesHelper
     end
   end
 
-  def action_finished_by_requester(status)
+  def no_actions_by_requester(status)
     case status
+    when $carrier_unpaid
+      "Waiting for carrier confirmation"
     when $order_finished
       "Finished!"
     else

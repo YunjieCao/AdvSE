@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
     end
   
     def index
-        @request = Request.all
+        @request = Request.display_pending_requestes
     end
   
     def new

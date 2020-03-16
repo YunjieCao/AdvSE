@@ -1,19 +1,18 @@
--# in app/views/movies/show.html.haml
+-# edit.html.haml using partial
 
-%h3 Details about #{@movie.title}
+%h2 History reviews for this carrier
 
-%ul#details
-  %li
-    Rating:
-    = @movie.rating
-  %li
-    Released on:
-    = @movie.release_date.strftime("%B %d, %Y")
+%table#reviews.table.table-striped.table-sm.col-md-12
+  %thead
+    %tr
+      %th Rating
+      %th Comments
+  %tbody
+    -#{:style=>"border: 1px; max-width: 50%; table-layout: fixed"}
+    - @reviews.each do |review|
+      %tr
+        %td= get_rating_helper(review.ratings)
+        %td= review.comments
 
-%h4 Description:
 
-%p#description= @movie.description
-
-= link_to 'Edit', edit_movie_path(@movie)
-= button_to 'Delete', movie_path(@movie), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-primary'
-= link_to 'Back to movie list', movies_path
+= button_to "Go Back", '#', :onclick => 'history.back(); return false;', :class => 'btn btn-primary'

@@ -23,6 +23,8 @@ Rottenpotatoes::Application.routes.draw do
   resources :update_request_statuses
   get 'order_generation/confirm'
 
+  get 'history_rates' => 'reviews#show'
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

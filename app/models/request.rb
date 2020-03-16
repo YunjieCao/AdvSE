@@ -30,4 +30,8 @@ class Request < ActiveRecord::Base
     Address.find(self.dest_addr_id)
   end
 
+  def self.display_pending_requestes()
+    Request.where(status:[$requester_unpaid, $carrier_pending])
+  end
+
 end

@@ -1,19 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :require_login
 
-  def show
-
-  end
-
   def index
     @request_id = params[:request_id]
     @review = Review.where(:order_id => @request_id)
     @request = Request.find_by(:id => @request_id)
     @requester_id = @request.requester_id
-  end
-
-  def new
-
   end
 
   def create
@@ -25,12 +17,9 @@ class ReviewsController < ApplicationController
     redirect_to user_profiles_path(params[:user_id])
   end
 
-  def edit
-
-  end
-
-  def update
-
+  def show
+    carrier_id = params[:carrier_id]
+    @reviews = Review.get_reviews_for_this_carrier(carrier_id)
   end
 
   private
