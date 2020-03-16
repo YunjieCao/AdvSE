@@ -38,7 +38,8 @@
           -#TODO link to payment
           = link_to action_pay_by_requester(request.status)
           = link_to action_pick_carrier_by_requester(request.status), task_applications_path(:order_id => request.id)
-          = link_to action_rate_by_requester(request.status)
+          = link_to action_rate_by_requester(request.status), request_reviews_path(request.id)
+          = action_finished_by_requester(request.status)
 
 %h4 Current taken requests as the carrier:
 

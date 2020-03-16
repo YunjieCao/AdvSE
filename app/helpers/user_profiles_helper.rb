@@ -19,8 +19,17 @@ module UserProfilesHelper
 
   def action_rate_by_requester(status)
     case status
-    when $order_finished
+    when $order_unrated
       "Rate this carrier"
+    else
+      ""
+    end
+  end
+
+  def action_finished_by_requester(status)
+    case status
+    when $order_finished
+      "Finished!"
     else
       ""
     end

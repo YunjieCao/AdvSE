@@ -2,7 +2,7 @@
 
 %h2 Rate this carrier for this order
 
-= form_tag movie_path(@movie), :method => :put do
+= form_tag movie_path(@review), :method => :put do
 
   = label :movie, :title, 'Title'
   = text_field :movie, 'title'

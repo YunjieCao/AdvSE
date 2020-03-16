@@ -1,29 +1,16 @@
--#  This file is app/views/movies/index.html.haml
-%h2 All Movies
+-# edit.html.haml using partial
 
-= form_tag movies_path, :method => :get, :id => 'ratings_form' do
-  = hidden_field_tag "title_sort", true if @title_header
-  = hidden_field_tag ":release_date_sort", true if @date_header
-  Include:
-  - @all_ratings.each do |rating|
-    = rating
-    = check_box_tag "ratings[#{rating}]", 1, @selected_ratings.include?(rating), :id => "ratings_#{rating}"
-  = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
+%h2 Rate this carrier for this order
 
-%table#movies.table.table-striped.col-md-12
-  %thead
-    %tr
-      %th{:class => @title_header}= link_to 'Movie Title', movies_path(:sort => 'title', :ratings => @selected_ratings), :id => 'title_header'
-      %th Rating
-      %th{:class => @date_header}= link_to 'Release Date', movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
-      %th More Info
-  %tbody
-    - @movies.each do |movie|
-      %tr
-        %td= movie.title
-        %td= movie.rating
-        %td= movie.release_date
-        %td= link_to "More about #{movie.title}", movie_path(movie)
+= form_tag request_reviews_path(@request_id, :user_id => @requester_id), :method => :post do
 
-= link_to 'Add new movie', new_movie_path
-= link_to 'Trigger test', movies_test_path
+  = label :score, 'Rating'
+  -# = select :score, :rating, Array.new($review_rating_num) { |e| e = get_rating_helper(e+1)}
+  = select_tag 'score', options_for_select(Array.new($review_rating_num) { |e| [get_rating_helper(e+1), e+1]})
+
+  = label :comment, 'Add your comment'
+  %input{:type=>"text", :name => "comment",:maxlenght => "200" ,:class => "text_field" }
+
+  -# = label :movie, :release_date, 'Released On'
+  -# = date_select :movie, :release_date
+  = submit_tag 'Rate this carrier', :class => 'btn btn-primary'

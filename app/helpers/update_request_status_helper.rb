@@ -14,6 +14,8 @@ module UpdateRequestStatusHelper
       "Successfully pick up"
     when $order_arrived
       "Arrive at destination city"
+    when $order_unrated
+      "Wating for review"
     when $order_finished
       "Finished"
     end
