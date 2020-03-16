@@ -15,6 +15,9 @@ module UpdateRequestStatusHelper
     when $order_arrived
       "Arrive at destination city"
     when $order_unrated
+      # TODO: yc3702
+      # TODO: how to stop update status for carrier, will affect update_request_status function for carrier
+      # TODO: current stop status for carrier is order_arrived(will affect user_profiles/show)
       "Wating for review"
     when $order_finished
       "Finished"

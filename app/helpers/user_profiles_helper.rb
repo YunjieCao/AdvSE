@@ -47,7 +47,7 @@ module UserProfilesHelper
   end
 
   def action_update_by_carrier(status)
-    if status >= $order_generated && status < $order_finished
+    if status >= $order_generated && status < $order_unrated
       "Update status"
     else
       ""
