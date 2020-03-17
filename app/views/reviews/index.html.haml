@@ -1,0 +1,16 @@
+-# edit.html.haml using partial
+
+%h2 Rate this carrier for this order
+
+= form_tag request_reviews_path(@request_id, :user_id => @requester_id), :method => :post do
+
+  = label :score, 'Rating'
+  -# = select :score, :rating, Array.new($review_rating_num) { |e| e = get_rating_helper(e+1)}
+  = select_tag 'score', options_for_select(Array.new($review_rating_num) { |e| [get_rating_helper(e+1), e+1]})
+
+  = label :comment, 'Add your comment'
+  %input{:type=>"text", :name => "comment",:maxlenght => "200" ,:class => "text_field" }
+
+  -# = label :movie, :release_date, 'Released On'
+  -# = date_select :movie, :release_date
+  = submit_tag 'Rate this carrier', :class => 'btn btn-primary'

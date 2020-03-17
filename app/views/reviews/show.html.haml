@@ -1,0 +1,18 @@
+-# edit.html.haml using partial
+
+%h2 History reviews for this carrier
+
+%table#reviews.table.table-striped.table-sm.col-md-12
+  %thead
+    %tr
+      %th Rating
+      %th Comments
+  %tbody
+    -#{:style=>"border: 1px; max-width: 50%; table-layout: fixed"}
+    - @reviews.each do |review|
+      %tr
+        %td= get_rating_helper(review.ratings)
+        %td= review.comments
+
+
+= button_to "Go Back", '#', :onclick => 'history.back(); return false;', :class => 'btn btn-primary'

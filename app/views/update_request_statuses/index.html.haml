@@ -14,7 +14,7 @@
       %th Details
   %tbody
     = form_tag update_request_status_path(@order_id), :method => :put do
-      - (@current_status...@status_num).each do |i|
+      - (@current_status..$order_arrived).each do |i| #TODO: how many statuses are allowed for carrier [yc3702]
         %tr
           %td= i
           %td= status_details(i)

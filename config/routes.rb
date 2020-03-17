@@ -13,13 +13,17 @@ Rottenpotatoes::Application.routes.draw do
   root :to => redirect('static_pages/home')
   resources :users
   resources :user_profiles
-  resources :requests
+  resources :requests do
+    resources :reviews
+  end
   resources :task_applications
   resources :order_generations
   resources :addresses
   #resources :track_request
   resources :update_request_statuses
   get 'order_generation/confirm'
+
+  get 'history_rates' => 'reviews#show'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

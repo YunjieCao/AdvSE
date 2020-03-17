@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200313183734) do
+ActiveRecord::Schema.define(version: 20200315221255) do
 
   create_table "addresses", force: :cascade do |t|
     t.string  "line1",        limit: 45,             null: false
@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 20200313183734) do
   add_index "requests", ["dest_addr_id"], name: "FK_dest_addr_id_idx", using: :btree
   add_index "requests", ["requester_id"], name: "FK_requester_id_idx", using: :btree
   add_index "requests", ["source_addr_id"], name: "FK_source_addr_id_idx", using: :btree
+
+  create_table "reviews", primary_key: "order_id", force: :cascade do |t|
+    t.integer "ratings",  limit: 4
+    t.string  "comments", limit: 200
+  end
 
   create_table "task_applications", force: :cascade do |t|
     t.integer  "order_id",   limit: 4, null: false
@@ -82,6 +87,7 @@ ActiveRecord::Schema.define(version: 20200313183734) do
   add_foreign_key "requests", "addresses", column: "source_addr_id", name: "FK_req_source_addr_id"
   add_foreign_key "requests", "user_profiles", column: "carrier_id", name: "FK_req_carrier_id"
   add_foreign_key "requests", "user_profiles", column: "requester_id", name: "FK_req_requester_id"
+  add_foreign_key "reviews", "requests", column: "order_id", name: "fk_reviews_1"
   add_foreign_key "task_applications", "requests", column: "order_id", name: "FK_app_order_id"
   add_foreign_key "task_applications", "user_profiles", column: "user_id", name: "FK_app_user_id"
   add_foreign_key "user_verifications", "user_profiles", column: "user_id", name: "FK_verif_user_id"

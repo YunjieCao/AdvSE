@@ -21,7 +21,7 @@
 
 %h4 Current published requests as the requester:
 
-%table#requester_requests.table.table-striped.col-md-12
+%table#requester_requests.table.table-striped.table-hover.col-md-12
   %thead
     %tr
       %th Title
@@ -35,7 +35,11 @@
         %td= status_details(request.status)
         %td= link_to "Detail", request_path(request)
         %td
-          = link_to "Pick a carrier", task_applications_path(:order_id => request.id)
+          -#TODO link to payment
+          = link_to action_pay_by_requester(request.status)
+          = link_to action_pick_carrier_by_requester(request.status), task_applications_path(:order_id => request.id)
+          = link_to action_rate_by_requester(request.status), request_reviews_path(request.id)
+          = no_actions_by_requester(request.status)
 
 %h4 Current taken requests as the carrier:
 
@@ -54,8 +58,9 @@
         %td= status_details(request.status)
         %td= link_to "Detail", request_path(request)
         %td
-          = link_to "Confirm Contract", update_request_status_path(:id=>request.id, :next_status=>2), :method => :put
-          = link_to "Update Status", update_request_statuses_path(:order_id=>request.id)
+          -# = TODO link to payment(confirm together with payment)
+          = link_to action_confirm_by_carrier(request.status)
+          = link_to action_update_by_carrier(request.status), update_request_statuses_path(:order_id=>request.id)
 
 %h4 Current pending applications as the carrier:
 
