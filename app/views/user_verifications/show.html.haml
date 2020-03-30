@@ -1,0 +1,13 @@
+%h3 Current Valid Verification
+
+%ul#details
+  %li
+    Available Start Date:
+    = @verification.start_date.strftime("%B %d, %Y")
+  %li
+    Available End Date:
+    = @verification.end_date.strftime("%B %d, %Y")
+
+= link_to 'Edit', edit_user_profile_user_verification_path(@user_profile, @verification)
+
+= link_to 'Back to User Center', user_profiles_path

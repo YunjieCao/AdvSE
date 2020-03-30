@@ -10,11 +10,11 @@
     email:
     = @user_profile.email
   %li
-    job:
-    = @user_profile.occupation
-  %li
     valid verification:
-    = :__TODO__
+    - if @verification
+      = link_to "View Current Verification", user_profile_user_verification_path(@user_profile.id, @verification.id)
+    - else
+      = link_to "Create New Verification", new_user_profile_user_verification_path(@user_profile.id)
 
 = link_to 'Edit User Profile', edit_user_profile_path(@user_profile)
 = link_to 'Manage Addresses', addresses_path
