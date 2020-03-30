@@ -1,7 +1,22 @@
 -#  This file is app/views/requests/index.html.haml
 %h2 All Requests
 
-= form_tag requests_path, :method => :get, :id => 'ratings_form' do
+= form_tag requests_path, :method => :get, :id => 'requests_form' do
+
+  %h4 Filter:
+  -# TODO(csw1995): Filtering city (Refactoring using foreign key)
+  -# = label :request_filter, :source_city, 'Source City'
+  -# = text_field :request_filter, 'source_city'
+
+  -# = label :request_filter, :dest_city, 'Destination City'
+  -# = text_field :request_filter, 'dest_city'
+
+  = label :request_filter, :expected_delivery_start, 'Earliest Expected Delivery Start Date'
+  = date_select :request_filter, :expected_delivery_start, selected: @start_date
+
+  = label :request_filter, :expected_delivery_end, 'Latest Expected Delivery End Date'
+  = date_select :request_filter, :expected_delivery_end, selected: @end_date
+
   = submit_tag 'Refresh', :id => 'ratings_submit', :class => 'btn btn-primary'
 
 %table#requests.table.table-striped.col-md-12
@@ -15,7 +30,7 @@
       %th End Date
       %th More details
   %tbody
-    - @request.each do |request|
+    - @requests.each do |request|
       %tr
         %td= request.title
         %td= request.value
