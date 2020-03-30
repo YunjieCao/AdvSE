@@ -17,8 +17,8 @@ Feature: Update status
 
     Given the following requestes exist:
       | id  | title               |requester_id | carrier_id  | status  |source_addr_id | dest_addr_id| expected_delivery_start | expected_delivery_end|
-      | 1   | first request       |1            | 1           |   2     |1              |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
-      | 2   | second request      |1            | 2           |   5     |1              |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
+      | 1   | first request       |2            | 1           |   3     |1              |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
+      | 2   | second request      |1            | 2           |   7     |1              |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
 
 
 
@@ -28,21 +28,22 @@ Feature: Update status
     Then I fill in "session_password" with "123456"
     When I press "Log in"
     Then I should see "User Center"
-    Then I follow "Update Status"
+    Then I should see "first request"
+    Then I follow "Update status"
     Then I should see "Choose next status"
-    When I choose "next_status_3"
+    When I choose "next_status_4"
       #choose for radio button, check for check box
     Then I press "Update to next status"
     Then I should see "Successfully pick up"
 
-  Scenario: Reject update after finished
+  Scenario: Reject update after arrived
     Given I am on the login page
     Then I fill in "session_email" with "YunjieCao@hotmail.com"
     Then I fill in "session_password" with "654321"
     When I press "Log in"
     Then I should see "User Center"
-    Then I follow "Update Status"
-    Then I should see "Already finished."
+    Then I should see "second request"
+    Then I should not see "Update status"
 
 
 

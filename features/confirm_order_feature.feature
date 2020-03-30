@@ -17,12 +17,13 @@ Feature: Confirm order
 
     Given the following requestes exist:
       | id  | title               |requester_id |  carrier_id  |      status    | source_addr_id | dest_addr_id| expected_delivery_start | expected_delivery_end|
-      | 1   | first request       |1            |       2      |          1     |          1     |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
+      | 1   | first request       |1            |       2      |          2     |          1     |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
 
   Scenario: Carrier confirm an order from a requester
     Given I am on the login page
     Then I fill in "session_email" with "YunjieCao@hotmail.com"
     Then I fill in "session_password" with "654321"
     When I press "Log in"
-    Then I follow "Confirm Contract"
-    Then I should see "Order Generated"
+    Then I follow "Confirm and pay deposit"
+    # TODO: Payment processing ...
+    # Then I should see "Order Generated"

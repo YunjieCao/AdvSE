@@ -16,8 +16,8 @@ Feature: Pick carrier
       |2  |	2270 Broadway|	Floor1|	New York |	NY|	United States|	 10025|	6463873259	|1 |
 
     Given the following requestes exist:
-      | id  | title               |requester_id | source_addr_id | dest_addr_id| expected_delivery_start | expected_delivery_end|
-      | 1   | first request       |1            | 1              |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    |
+      | id  | title               |requester_id | source_addr_id | dest_addr_id| expected_delivery_start | expected_delivery_end | status |
+      | 1   | first request       |1            | 1              |      2      |2020-03-06 00:00:00      |2020-03-06 00:00:00    | 1      |
 
     Given the following applications exist:
       |  id  |  order_id   | user_id   |
@@ -33,7 +33,7 @@ Scenario: Requester pick a carrier
     Then I follow "Pick a carrier"
     Then I should see "Current applications"
     Then I follow "Pick"
-    Then I should see "Waiting carrier confirmation"
+    Then I should see "Waiting for carrier confirmation"
 
 
 
