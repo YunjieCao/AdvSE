@@ -12,7 +12,9 @@ Rottenpotatoes::Application.routes.draw do
   #root :to => redirect('/user_profiles')
   root :to => redirect('static_pages/home')
   resources :users
-  resources :user_profiles
+  resources :user_profiles do
+    resources :user_verifications
+  end
   resources :requests do
     resources :reviews
   end

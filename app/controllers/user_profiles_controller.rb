@@ -10,6 +10,7 @@ class UserProfilesController < ApplicationController
     @requester_requests = Request.get_requester_request(id)
     @carrier_requests = Request.get_carrier_request(id)
     @applications = TaskApplication.where(user_id: @user_profile.id)
+    @verification = @user_profile.get_valid_verification
     # will render app/views/user_profiles/show.<extension> by default
   end
 

@@ -1,0 +1,15 @@
+%h2 Create New Verification
+
+= form_tag user_profile_user_verifications_path(@user_profile) do
+
+  = label :user_verification, :start_date, 'Available start date'
+  = date_select :user_verification, 'start_date'
+
+  = label :user_verification, :end_date, 'Available end date'
+  = date_select :user_verification, 'end_date'
+
+  -# TODO(csw1995): Upload flight ticket to validate
+
+  = submit_tag 'Save Changes', :class => 'btn btn-primary'
+
+  = link_to 'Back to User Center', user_profiles_path

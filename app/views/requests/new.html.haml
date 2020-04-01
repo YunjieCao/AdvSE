@@ -12,9 +12,11 @@
   = text_field :request, 'value'
 
   = label :request, :source_addr_id, 'Source address'
+  = link_to 'Add new address', new_address_path
   = select :request, :source_addr_id, @address
 
   = label :request, :dest_addr_id, 'Destination address'
+  = link_to 'Add new address', new_address_path
   = select :request, :dest_addr_id, @address
 
   = label :request, :expected_delivery_start, 'Expected Delivery Start Date'

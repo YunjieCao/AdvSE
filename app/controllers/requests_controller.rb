@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
     before_action :require_login, except: [:show, :index]
+    include ApplicationHelper
 
     def show
       # This will show request details page.
@@ -8,7 +9,18 @@ class RequestsController < ApplicationController
     end
   
     def index
-        @request = Request.display_pending_requestes
+      @requests = Request.display_pending_requestes
+      if params[:request_filter].present?
+        filter = params[:request_filter]
+
+        @start_date = parse_date_select(filter, "expected_delivery_start")
+        @requests = @requests.filter_by_start_date(@start_date) if @start_date
+        @end_date = parse_date_select(filter, "expected_delivery_end")
+        @requests = @requests.filter_by_end_date(@end_date) if @end_date
+      else
+        @start_date = Date.today
+        @end_date = Date.today
+      end
     end
   
     def new
