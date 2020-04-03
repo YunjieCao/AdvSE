@@ -245,9 +245,3 @@ DEPENDENCIES
   sqlite3
   stripe
   uglifier (>= 2.7.1)
-
-RUBY VERSION
-   ruby 2.4.0p0
-
-BUNDLED WITH
-   1.17.3
