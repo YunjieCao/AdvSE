@@ -35,6 +35,6 @@ class Request < ActiveRecord::Base
   end
 
   # Ref: https://www.justinweiss.com/articles/search-and-filter-rails-models-without-bloating-your-controller/
-  scope :filter_by_start_date, -> (start_date) { where('expected_delivery_start >= ?', start_date) }
-  scope :filter_by_end_date, -> (end_date) { where('expected_delivery_end <= ?', end_date) }
+  scope :filter_by_start_date, -> (start_date) { where('expected_delivery_start <= ?', start_date) }
+  scope :filter_by_end_date, -> (end_date) { where('expected_delivery_end >= ?', end_date) }
 end
