@@ -17,6 +17,15 @@ module UserProfilesHelper
     end
   end
 
+  def action_confirm_by_requester(status)
+    case status
+    when $order_arrived
+      "Confirm arrival"
+    else
+      ""
+    end
+  end
+
   def action_rate_by_requester(status)
     case status
     when $order_unrated

@@ -35,20 +35,20 @@
         %td= status_details(request.status)
         %td= link_to "Detail", request_path(request)
         %td
-          -#TODO link to payment
-          = link_to action_pay_by_requester(request.status)
+          - if request.status == $requester_unpaid
+            = form_tag update_request_status_path(:id => request.id, :next_status => $carrier_pending) , :method => :put do
+              %article
+              %script.stripe-button{"data-amount" => "#{request.value*100}", 
+              "data-description" => "Pay for this order", 
+              "data-key" => "pk_test_Y84rnSDJpoMzeAjls6jybumy00xDY84fDZ", 
+              "data-locale" => "auto", 
+              src: "https://checkout.stripe.com/checkout.js"}
+
           = link_to action_pick_carrier_by_requester(request.status), task_applications_path(:order_id => request.id)
+          = link_to action_confirm_by_requester(request.status), update_request_status_path(request.id, :next_status => $order_unrated) , :method => :put
           = link_to action_rate_by_requester(request.status), request_reviews_path(request.id)
           = no_actions_by_requester(request.status)
 
-          = form_tag update_request_status_path(:id => request.id, :next_status => $carrier_pending) , :method => :put do
-            %article
-              - if flash[:error].present?
-                #error_explanation
-                  %p= flash[:error]
-              %label.amount
-                %span Amount: $50.00
-            %script.stripe-button{"data-amount" => "5000", "data-description" => "Pay for this order", "data-key" => "pk_test_Y84rnSDJpoMzeAjls6jybumy00xDY84fDZ", "data-locale" => "auto", src: "https://checkout.stripe.com/checkout.js"}
 
 
 %h4 Current taken requests as the carrier:
@@ -68,9 +68,17 @@
         %td= status_details(request.status)
         %td= link_to "Detail", request_path(request)
         %td
-          -# = TODO link to payment(confirm together with payment)
-          = link_to action_confirm_by_carrier(request.status)
+          - if request.status == $carrier_unpaid
+            = form_tag update_request_status_path(:id => request.id, :next_status => $order_generated) , :method => :put do
+              %article
+              %script.stripe-button{"data-amount" => "#{request.value*100}", 
+                                    "data-description" => "Pay for this order", 
+                                    "data-key" => "pk_test_Y84rnSDJpoMzeAjls6jybumy00xDY84fDZ", 
+                                    "data-locale" => "auto", 
+                                    src: "https://checkout.stripe.com/checkout.js"}
+
           = link_to action_update_by_carrier(request.status), update_request_statuses_path(:order_id=>request.id)
+
 
 %h4 Current pending applications as the carrier:
 
