@@ -4,6 +4,7 @@
 
 Github URL: https://github.com/YunjieCao/AdvSE  
 This is a private repository. Code will be submitted on Coursework. Can contact us to ask for the access to this repository.
+The project is deployed on Heroku and the url is: https://safe-taiga-58766.herokuapp.com
 
 In iteration 1, we adapt HW4 to build out own SaaS product and accomplished the following basic work flows.
 
