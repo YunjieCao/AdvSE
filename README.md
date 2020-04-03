@@ -15,3 +15,14 @@ In iteration 1, we adapt HW4 to build out own SaaS product and accomplished the 
 - Post Request
 - Take Request
 - Update Status
+
+
+In iteration 2, we add some features
+
+- Add filter for the requests in the marketplace
+- Create user_verification model
+- Add create new addresses link in the new request creation page
+- See historical reviews of carriers when picking a carrier
+- Group requests with same status together in user center
+- Add review component in the platform
+- Add payment module
