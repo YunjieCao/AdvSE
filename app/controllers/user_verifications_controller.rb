@@ -3,7 +3,7 @@ class UserVerificationsController < ApplicationController
 
     def show
         user_id = params[:user_profile_id] # retrieve user_profile ID from URI route
-        @user_profile = UserVerification.find(user_id) # look up user_profile by unique ID
+        @user_profile = User_profile.find(user_id) # look up user_profile by unique ID
         
         id = params[:id]
         @verification = UserVerification.find(id)
@@ -11,14 +11,14 @@ class UserVerificationsController < ApplicationController
     
     def new
         user_id = params[:user_profile_id] # retrieve user_profile ID from URI route
-        @user_profile = UserVerification.find(user_id) # look up user_profile by unique ID
+        @user_profile = User_profile.find(user_id) # look up user_profile by unique ID
         
         @verification = UserVerification.new
     end
   
     def create
         user_id = logged_id # retrieve user_profile ID from URI route
-        @user_profile = UserVerification.find(user_id) # look up user_profile by unique ID
+        @user_profile = User_profile.find(user_id) # look up user_profile by unique ID
         
         @verification = UserVerification.new(verification_params)
         @verification.user_id = user_id
@@ -33,7 +33,7 @@ class UserVerificationsController < ApplicationController
 
     def edit
         user_id = params[:user_profile_id]
-        @user_profile = UserVerification.find(user_id)
+        @user_profile = User_profile.find(user_id)
 
         id = params[:id]
         @verification = UserVerification.find(id)
@@ -41,7 +41,7 @@ class UserVerificationsController < ApplicationController
   
     def update
         user_id = params[:user_profile_id]
-        @user_profile = UserVerification.find(user_id)
+        @user_profile = User_profile.find(user_id)
 
         @verification = UserVerification.find params[:id]
         @verification.update_attributes!(verification_params)
