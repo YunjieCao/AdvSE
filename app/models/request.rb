@@ -1,4 +1,6 @@
 class Request < ActiveRecord::Base
+  mount_uploader :img_url, ImageUploader
+
   def self.get_status(order_id)
     order = Request.find_by(id: order_id)
     return order.status

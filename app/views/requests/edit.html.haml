@@ -2,7 +2,7 @@
 
 %h2 Edit existing request
 
-= form_tag request_path(@request), :method => :put do
+= form_tag request_path(@request), :method => :put, :multipart => true do
 
   = label :request, :title, 'Title'
   = text_field :request, 'title'

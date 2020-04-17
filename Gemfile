@@ -42,6 +42,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'protected_attributes'
 gem 'mysql2', '<0.5'
+gem 'carrierwave', '~> 1.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
