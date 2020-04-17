@@ -1,6 +1,9 @@
 %h2 Post New Request
 
-= form_tag requests_path do
+= form_tag requests_path, :multipart => true do
+
+  = label :request, :img_url, 'Image'
+  = file_field :request, 'img_url'
 
   = label :request, :title, 'Title'
   = text_field :request, 'title'

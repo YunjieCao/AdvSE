@@ -4,6 +4,8 @@
 
 %ul#details
   %li
+    = image_tag(@request.img_url.url, alt: 'Image', style: 'height:300px;width:auto;') if @request.img_url?
+  %li
     title:
     = @request.title
   %li

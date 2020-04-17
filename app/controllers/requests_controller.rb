@@ -38,6 +38,9 @@ class RequestsController < ApplicationController
         flash[:success] = "New request successfully posted"
         redirect_to requests_path # should redirect to marketplace
       else
+        flash[:danger] = "Invalid form values"
+        address_data = Address.where(user_id: logged_id)
+        @address = address_data.map { |addr| addr.select_option }
         render 'new'
       end
     end
