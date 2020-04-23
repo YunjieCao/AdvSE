@@ -4,6 +4,9 @@
 
 = form_tag request_path(@request), :method => :put, :multipart => true do
 
+  = label :request, :img_url, 'Image'
+  = file_field :request, 'img_url'
+
   = label :request, :title, 'Title'
   = text_field :request, 'title'
 
