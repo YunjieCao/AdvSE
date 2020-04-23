@@ -31,17 +31,24 @@ class RequestsController < ApplicationController
   
     def create
       @request = Request.new(request_params)
-      @request.requester_id = logged_id
-      @request.status = 0
-      @request.created_at = DateTime.now
-      if @request.save
-        flash[:success] = "New request successfully posted"
-        redirect_to requests_path # should redirect to marketplace
-      else
-        flash[:danger] = "Invalid form values"
+      if !request_params[:source_addr_id].present? || !request_params[:dest_addr_id].present?
+        flash[:danger] = "Please fill in address!"
         address_data = Address.where(user_id: logged_id)
         @address = address_data.map { |addr| addr.select_option }
         render 'new'
+      else
+        @request.requester_id = logged_id
+        @request.status = 0
+        @request.created_at = DateTime.now
+        if @request.save
+          flash[:success] = "New request successfully posted"
+          redirect_to requests_path # should redirect to marketplace
+        else
+          flash[:danger] = "Invalid form values"
+          address_data = Address.where(user_id: logged_id)
+          @address = address_data.map { |addr| addr.select_option }
+          render 'new'
+        end
       end
     end
   
