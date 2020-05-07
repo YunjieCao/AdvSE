@@ -15,9 +15,29 @@ class AddressesController < ApplicationController
     end
   
     def create
-        @address = Address.create!(address_params.merge(:user_id => logged_id))
-        flash[:success] = "Address #{@address.id} was successfully created."
-        redirect_to addresses_path
+        if !address_params[:line1].present? 
+            flash[:danger] = "Please fill in line1!"
+            render 'new'
+        elsif !address_params[:city].present?
+            flash[:danger] = "Please fill in city!"
+            render 'new'
+        elsif !address_params[:state].present?
+            flash[:danger] = "Please fill in state!"
+            render 'new'
+        elsif !address_params[:country].present?
+            flash[:danger] = "Please fill in country!"
+            render 'new'
+        elsif !address_params[:postal_code].present?
+            flash[:danger] = "Please fill in postal_code!"
+            render 'new'
+        elsif !address_params[:phone_number].present?
+            flash[:danger] = "Please fill in phone_number!"
+            render 'new'
+        else
+            @address = Address.create!(address_params.merge(:user_id => logged_id))
+            flash[:success] = "Address #{@address.id} was successfully created."
+            redirect_to addresses_path
+        end
     end
   
     def edit
@@ -25,10 +45,30 @@ class AddressesController < ApplicationController
     end
   
     def update
-        @address = Address.find params[:id]
-        @address.update_attributes!(address_params)
-        flash[:success] = "Address #{@address.id} was successfully updated."
-        redirect_to address_path(@address)
+        if !address_params[:line1].present? 
+            flash[:danger] = "Please fill in line1!"
+            render 'new'
+        elsif !address_params[:city].present?
+            flash[:danger] = "Please fill in city!"
+            render 'new'
+        elsif !address_params[:state].present?
+            flash[:danger] = "Please fill in state!"
+            render 'new'
+        elsif !address_params[:country].present?
+            flash[:danger] = "Please fill in country!"
+            render 'new'
+        elsif !address_params[:postal_code].present?
+            flash[:danger] = "Please fill in postal_code!"
+            render 'new'
+        elsif !address_params[:phone_number].present?
+            flash[:danger] = "Please fill in phone_number!"
+            render 'new'
+        else
+            @address = Address.find params[:id]
+            @address.update_attributes!(address_params)
+            flash[:success] = "Address #{@address.id} was successfully updated."
+            redirect_to address_path(@address)
+        end
     end
   
     def destroy
