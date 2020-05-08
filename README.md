@@ -53,9 +53,6 @@ heroku run db:drop db:create db:migrate db:seed
 ```
 cucumber features/*.feature
 ```
-Github URL: https://github.com/YunjieCao/AdvSE  
-This is a private repository. Code will be submitted on Coursework. Can contact us to ask for the access to this repository.  
-The project is deployed on Heroku and the url is: https://safe-taiga-58766.herokuapp.com
 
 ## Agile development
 We follow agile development pattern to develop our platform. Details of our plan are shown in the following table.   
@@ -92,6 +89,7 @@ Some pages for our product.
 ![image](https://github.com/YunjieCao/AdvSE/blob/master/app/assets/images/se7.png)
 ### Workflow of our product.  
 ![image](https://github.com/YunjieCao/AdvSE/blob/master/app/assets/images/se2.jpeg)
+### Lo-Fi UI Sketches
 ![image](https://github.com/YunjieCao/AdvSE/blob/master/app/assets/images/se4.png)
 
 
