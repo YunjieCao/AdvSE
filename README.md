@@ -5,7 +5,10 @@
 
 Full stack Saas product following MVC pattern using **Ruby on rails** and **Bootstrap**.   
 Followed test-driven design pattern and used **Cucumber** and **Capybara** to develop user stories and test code to automatically test our features.  
-The product is deployed on Heroku and the url is: https://safe-taiga-58766.herokuapp.com.
+The product is deployed on [Heroku](https://safe-taiga-58766.herokuapp.com).
+
+Here are our links of [pitch deck](https://docs.google.com/presentation/d/1mxDaISrVZOgVeOe1zvpzgJqUvuX656xf7PR3H6qMRRA/edit?usp=sharing)
+and [pre-recorded presentation](https://youtu.be/hxOaI8U21kQ).
 
 ## Product Pitch
 We developed this idea as we are aware of the difficulties facing people who want to mail surgical masks and protective hooded coveralls to Hubei, China from the United States recently. People frequently post online looking for carriers who travel to China. A centralized platform which can match shippers and carriers is in need.   
